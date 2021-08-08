@@ -12,5 +12,10 @@ To run in real rates mode(rates refresh every 30 minutes):
 `ENABLED_API=FREE_CC npm start`
 
 Example request:
+```
+curl -X GET \
+    'http://localhost:3000/rates/UAH?timestamp=1628437501351'
 
-``
+```
+
+`timestamp` is optional

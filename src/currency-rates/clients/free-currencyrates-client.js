@@ -23,15 +23,19 @@ export class FreeCurrencyConverterAPIClient extends CurrencyRatesClient {
 
   async fetchRates() {
     try {
-      const pairResults = await Promise.all(this.currencyPairQueryStrings.map((ratesUpdateQueryString) => axios.get(`${this.apiHost}/api/v7/convert`, {
-        params: {
-          q: ratesUpdateQueryString,
-          compact: 'ultra',
-          apiKey: this.apiKey
-        },
-      }).then(res => {
-        return res.data
-      })));
+      const pairResults = await Promise.all(
+        this.currencyPairQueryStrings.map((ratesUpdateQueryString) => {
+          return axios.get(`${this.apiHost}/api/v7/convert`, {
+            params: {
+              q: ratesUpdateQueryString,
+              compact: 'ultra',
+              apiKey: this.apiKey,
+            },
+          }).then(res => {
+            return res.data;
+          });
+        })
+      );
       return pairResults.reduce((acc, pairResults) => Object.assign(acc, pairResults), {});
     } catch (e) {
       // Would be good to handle errors here, for example add incremental delay retries for 429

@@ -1,7 +1,6 @@
 // Code below in just a mock implementation (there is memory leak inside)
 // For production code some kind database has to be used
-// (any SQL database with index on the timestamp field for fast search of queried rate on a given time)
-// also we should cache frequently queried rates. (use LRU cache)
+// (any SQL database, table with indexes for fast search of queried rate)
 
 export class RatesStorage {
   static instance;

@@ -2,7 +2,6 @@ import EventEmitter from 'events';
 
 export class CurrencyRatesClient extends EventEmitter {
   #cache = null;
-  updateFrequency = null;
   cacheTimer = null;
 
   constructor({ currencyList, originalCurrency = 'USD', config }) {

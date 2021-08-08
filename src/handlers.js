@@ -5,7 +5,7 @@ export const handlers = {
     try {
       const { target } = req.params;
       const { timestamp } = req.query;
-
+      // we should cache frequently queried rates here to reduce DB load (use LRU cache)
       const ratesStorage = RatesStorage.getInstance();
 
       const rate = await ratesStorage.getRate({target, timestamp});
